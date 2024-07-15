@@ -1,13 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Cutive Mono', monospace;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: lowercase;
+  background-color: rgb(31, 40, 56);
+  color: #ffffff;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+a,
+a:link,
+a:visited {
+  color: rgb(246, 255, 0);
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(0, 213, 255);
+}
+
+.head {
+  padding: 4vh;
+}
+
+.head-nav {
+  display: flex;
+  justify-content: center;
+}
+.head-nav a {
+  padding: 1em;
+}
+.head-nav a.active {
+  text-decoration: underline;
+}
+
+.characters {
+  display: flex;
+  margin: 0 auto;
+  max-width: 600px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.characters a {
+  padding: 1em;
 }

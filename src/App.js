@@ -1,23 +1,56 @@
-import logo from './logo.svg';
 import './App.css';
+import Head from './App/Head.js';
+import Characters from './App/Tabs/Characters.js';
+import Character from './App/Tabs/Character.js';
+import api from 'api.js';
 
 function App() {
+  let ePage = '404 - Page not found.';
+
+  let tabs = [
+    {
+      id: 'home',
+      // component: Home,
+      nav: true,
+      name: 'Home',
+    },
+    {
+      id: 'characters',
+      component: Characters,
+      nav: true,
+      name: 'Characters',
+    },
+    {
+      id: 'character',
+      component: Character,
+      props: () => {
+        return {
+          character: api.router.get('character'),
+        };
+      },
+      nav: false,
+      name: 'Character',
+    },
+    {
+      id: 'seasons',
+      nav: true,
+      // component: Home,
+      name: 'Seasons',
+    },
+  ];
+
+  let curTab = tabs.find((t) => t.id === api.router.get('tab'));
+
+  if (curTab && curTab.component) {
+    let Component = curTab.component;
+    let props = curTab.props ? curTab.props() : {};
+    ePage = <Component {...props} />;
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Head {...{ tabs }} />
+      {ePage}
     </div>
   );
 }
