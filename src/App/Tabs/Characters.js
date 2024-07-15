@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import api from 'api.js';
 
+// Characters
+
 function Characters() {
   const [data, setData] = useState(null);
   useEffect(() => {
