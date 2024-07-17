@@ -5,54 +5,55 @@ import Character from './App/Tabs/Character.js';
 import api from 'api.js';
 
 function App() {
-  let ePage = '404 - Page not found.';
+    let ePage = '404 - Page not found.';
 
-  let tabs = [
-    {
-      id: 'home',
-      // component: Home,
-      nav: true,
-      name: 'Home',
-    },
-    {
-      id: 'characters',
-      component: Characters,
-      nav: true,
-      name: 'Characters',
-    },
-    {
-      id: 'character',
-      component: Character,
-      props: () => {
-        return {
-          character: api.router.get('character'),
-        };
-      },
-      nav: false,
-      name: 'Character',
-    },
-    {
-      id: 'seasons',
-      nav: true,
-      // component: Home,
-      name: 'Seasons',
-    },
-  ];
+    let tabs = [
+        {
+            id: 'home',
+            // component: Home,
+            nav: true,
+            name: 'Home',
+        },
+        {
+            id: 'characters',
+            component: Characters,
+            nav: true,
+            name: 'Characters',
+        },
+        {
+            id: 'character',
+            component: Character,
+            props: () => {
+                return {
+                    character: api.router.get('character'),
+                };
+            },
+            nav: false,
+            name: 'Character',
+        },
+        {
+            id: 'seasons',
+            nav: true,
+            // component: Home,
+            name: 'Seasons',
+        },
+    ];
 
-  let curTab = tabs.find((t) => t.id === api.router.get('tab'));
+    let curTab = tabs.find((t) => t.id === api.router.get('tab'));
 
-  if (curTab && curTab.component) {
-    let Component = curTab.component;
-    let props = curTab.props ? curTab.props() : {};
-    ePage = <Component {...props} />;
-  }
+    if (curTab && curTab.component) {
+        let Component = curTab.component;
+        let props = curTab.props ? curTab.props() : {};
+        ePage = <Component {...props} />;
+    }
 
-  return (
-    <div className="App">
-      <Head {...{ tabs }} />
-      {ePage}
-    </div>
-  );
+    tabs = tabs.filter((t) => t.nav === true);
+    return (
+        <div className="App">
+            <Head {...{ tabs }} />
+            {ePage}
+        </div>
+    );
 }
 
 export default App;
